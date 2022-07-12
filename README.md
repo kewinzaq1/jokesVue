@@ -2,7 +2,7 @@
 
 ## Live 📍
 
-TODO
+https://jokes-vue.vercel.app/
 
 ## Tech/framework used 🔧
 
