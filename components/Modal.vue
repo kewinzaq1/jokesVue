@@ -42,7 +42,7 @@ import {
 
 
 export default {
-  name: "JokeModalComp",
+  name: "ModalComp",
   components: {
     CBox,
     CModal,

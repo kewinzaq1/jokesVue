@@ -6,9 +6,9 @@
       <CAlertDescription>{{ error.message }}</CAlertDescription>
       <CCloseButton position="absolute" right="8px" top="8px"/>
     </CAlert>
-    <CCircularProgress v-if="!categories" is-indeterminate/>
+    <CCircularProgress v-if="!categories" is-indeterminate mt="4"/>
     <CSelect
-      v-if="categories" placeholder="Category" width="max-content" mt="1rem" z-index="0"
+      v-if="categories" placeholder="Set category" width="max-content" mt="1rem" z-index="0"
       @change="changeCategory">
       <option v-for="category in categories" :key="category">{{ category }}</option>
     </CSelect>

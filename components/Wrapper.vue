@@ -6,7 +6,7 @@
       <CHeading as="h1" font-size='3rem' font-weight="400">Jokes</CHeading>
       <CText font-size="1.25rem">Choose category and display random joke</CText>
       <Select/>
-      <JokeModal/>
+      <Modal/>
     </CFlex>
   </div>
 </template>
@@ -16,7 +16,7 @@ import {CFlex, CHeading, CText} from "@chakra-ui/vue";
 
 
 export default {
-  name: "JokeWrapper",
+  name: "JokeWrapperComp",
   components: {
     CText, CFlex, CHeading
   }

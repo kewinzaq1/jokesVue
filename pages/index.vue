@@ -5,7 +5,7 @@
 <script lang="js">
 import
   JokeWrapper
-  from '~/components/JokeWrapper';
+  from '~/components/Wrapper';
 
 export default {
   name: 'IndexPage',
