@@ -1,41 +1,57 @@
 <template>
-  <div>
-    <CSelect placeholder="Category" width="max-content" mt="1rem">
+  <CBox mx-auto>
+    <CAlert v-if="error" status="error">
+      <CAlertIcon/>
+      <CAlertTitle>Oops</CAlertTitle>
+      <CAlertDescription>{{ error.message }}</CAlertDescription>
+      <CCloseButton position="absolute" right="8px" top="8px"/>
+    </CAlert>
+    <CCircularProgress v-if="!categories" is-indeterminate/>
+    <CSelect
+      v-if="categories" placeholder="Category" width="max-content" mt="1rem" z-index="0"
+      @change="changeCategory">
       <option v-for="category in categories" :key="category">{{ category }}</option>
     </CSelect>
-  </div>
+  </CBox>
 </template>
 
 <script>
-import {CSelect} from "@chakra-ui/vue";
-import axios from "axios";
+import {
+  CSelect,
+  CBox,
+  CCircularProgress,
+  CAlert,
+  CAlertIcon,
+  CAlertTitle,
+  CAlertDescription,
+  CCloseButton
+} from "@chakra-ui/vue";
 
 
 export default {
   name: "SelectComp",
   components: {
-    CSelect
+    CSelect, CBox, CCircularProgress, CAlert, CAlertIcon, CAlertTitle, CAlertDescription, CCloseButton
+  },
+  data() {
+    return {
+      selected: '',
+      error: null
+    }
   },
   computed: {
     categories() {
-      return this.$store.state.categories
+      return this.$store.getters.getCategories
     }
   },
   mounted() {
-    this.fetchCategories()
+    this.$store.dispatch('fetchCategories')
   },
   methods: {
-    async fetchCategories() {
-      try {
-        const data = await axios.get(
-          'https://api.chucknorris.io/jokes/categories'
-        )
-        console.log(data)
-        return this.$store.commit('setCategories', data.data)
-      } catch (e) {
-        console.log(e)
-      }
-    },
+    changeCategory(category) {
+      this.$store.commit('setCategory', category)
+      this.$store.dispatch('fetchJoke')
+    }
   }
 }
 </script>
